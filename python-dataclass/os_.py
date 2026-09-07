@@ -8,4 +8,4 @@ class OS:
     inception: int
     name: str
     platforms: frozenset[Platform]
-    proglangs: frozenset[Proglang]
+    proglangs: frozenset[ProgLang]
