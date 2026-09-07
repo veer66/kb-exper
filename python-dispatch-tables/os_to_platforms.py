@@ -1,5 +1,5 @@
 from os_ import OS
-from platform import Platform
+from platform_ import Platform
 
 
 os_to_platforms = {
