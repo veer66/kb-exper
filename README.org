@@ -6,3 +6,4 @@ kb-exper is a collection of knowledge representations based on diverse approache
 - Dispatch tables (Python dictionaries)
 - Python dataclass
 - Clojure map
+- Logic (Prolog)
