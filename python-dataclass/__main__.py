@@ -22,5 +22,11 @@ oses = [
 ]
 
 
+def os_to_str(os: OS) -> str:
+    return f"{os.name}@{os.inception}"
+
+
+if __name__ == '__main__':
+    print(list(map(os_to_str, oses)))
 
 
