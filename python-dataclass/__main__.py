@@ -1,6 +1,7 @@
 from os_ import OS
 from platform_ import Platform
 from proglang import ProgLang
+from typing import Protocol
 
 
 oses = [
@@ -21,12 +22,23 @@ oses = [
     ),
 ]
 
+# Too specific
+# def os_to_str(os: OS) -> str:
+#     return f"{os.name}@{os.inception}"
 
-def os_to_str(os: OS) -> str:
-    return f"{os.name}@{os.inception}"
+class NameInception(Protocol):
+    @property
+    def name(self) -> str: ...
+    
+    @property
+    def inception(self) -> int: ...
+
+
+def name_inception_to_str(name_inception: NameInception) -> str:
+    return f"{name_inception.name}@{name_inception.inception}"
 
 
 if __name__ == '__main__':
-    print(list(map(os_to_str, oses)))
+    print(list(map(name_inception_to_str, oses)))
 
 
