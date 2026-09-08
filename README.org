@@ -1,6 +1,6 @@
 #+TITLE: kb-exper
 
-kb-exper is a collection of knowledge representations based on diverse approaches. If knowledge representation sounds unfamiliar, it simply refers to how structured data is stored.
+KB-Exper is a collection of knowledge representations based on diverse approaches. If knowledge representation sounds unfamiliar, in this context it simply refers to how structured data is stored.
 
 * Approaches
 - Dispatch tables (Python dictionaries)
