@@ -9,7 +9,7 @@
            {:name "PC-DOS"
             :inception 1981,
             :platforms #{:X86}
-            :proglangs=#{:ASM, :C}}])
+            :proglangs #{:ASM, :C}}])
 
 (defn name-inception-to-str [{:keys [name inception]}]
   (str name "@" inception))
