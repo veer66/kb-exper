@@ -1,9 +1,9 @@
 from os_ import OS
-from os_to_inception import os_to_inception
+from os_to_inception import OS_TO_INCEPTION
 
 
 def os_to_str(os: OS) -> str:
-    inception = os_to_inception[os]
+    inception = OS_TO_INCEPTION[os]
     return f"{os.value}@{inception}"
 
 

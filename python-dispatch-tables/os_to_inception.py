@@ -1,6 +1,6 @@
 from os_ import OS
 
-os_to_inception = {
+OS_TO_INCEPTION = {
     OS.CPM: 1974,
     OS.NETBSD: 1993,
     OS.PCDOS: 1981
