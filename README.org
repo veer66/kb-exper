@@ -4,6 +4,48 @@ KB-Exper is a collection of knowledge representations based on diverse approache
 
 * Approaches
 - Dispatch tables (Python dictionaries)
+
+#+BEGIN_SRC python
+def os_to_str(os: OS) -> str:
+    inception = OS_TO_INCEPTION[os]
+    return f"{os.value}@{inception}"
+
+
+if __name__ == '__main__':
+    print(list(map(os_to_str,OS)))
+#+END_SRC
+
 - Python dataclass
+
+#+BEGIN_SRC python
+class NameInception(Protocol):
+    @property
+    def name(self) -> str: ...
+    
+    @property
+    def inception(self) -> int: ...
+
+
+def name_inception_to_str(name_inception: NameInception) -> str:
+    return f"{name_inception.name}@{name_inception.inception}"
+
+
+if __name__ == '__main__':
+    print(list(map(name_inception_to_str, OSES)))
+#+END_SRC
+
 - Clojure map
+
+#+BEGIN_SRC Clojure
+(defn name-inception-to-str [{:keys [name inception]}]
+  (str name "@" inception))
+
+(println (map name-inception-to-str oses))
+#+END_SRC
+
 - Logic (Prolog)
+
+#+BEGIN_SRC Prolog
+main :- forall((name(OS, Name), inception(OS, Year)),
+	       format("~w@~w~n", [Name, Year])).
+#+END_SRC
