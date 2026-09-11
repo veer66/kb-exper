@@ -3,8 +3,38 @@
 KB-Exper is a collection of knowledge representations based on diverse approaches. If knowledge representation sounds unfamiliar, in this context it simply refers to how structured data is stored.
 
 * Approaches
-- Dispatch tables (Python dictionaries)
+** Dispatch tables (Python dictionaries)
 
+The dispatch-table approach scattered data into many dictionaries acting as key-value maps, for example:
+
+os_to_inception.py:
+#+BEGIN_SRC python
+OS_TO_INCEPTION = {
+    OS.CPM: 1974,
+    OS.NETBSD: 1993,
+    OS.PCDOS: 1981
+}
+#+END_SRC
+
+os_to_platforms.py:
+#+BEGIN_SRC python
+OS_TO_PLATFORMS = {
+    OS.CPM: frozenset({Platform.I8080, Platform.I8085, Platform.I8086, Platform.M68K, Platform.Z80, Platform.Z8K}),
+    OS.NETBSD: frozenset({Platform.ALPHA, Platform.ARM, Platform.M68K, Platform.MIPS, Platform.PARISC, Platform.SUPERH, Platform.VAX, Platform.X86, Platform.RISCV}),
+    OS.PCDOS: frozenset({Platform.X86}),
+}
+#+END_SRC
+
+os_to_proglangs.py:
+#+BEGIN_SRC python
+OS_TO_PROGLANGS = {
+    OS.CPM: frozenset({ProgLang.ASM, ProgLang.PLM}),
+    OS.NETBSD: frozenset({ProgLang.ASM, ProgLang.C}),
+    OS.PCDOS: frozenset({ProgLang.ASM, ProgLang.C}),
+}
+#+END_SRC
+
+__main__.py:
 #+BEGIN_SRC python
 def os_to_str(os: OS) -> str:
     inception = OS_TO_INCEPTION[os]
@@ -15,7 +45,7 @@ if __name__ == '__main__':
     print(list(map(os_to_str,OS)))
 #+END_SRC
 
-- Python dataclass
+** Python dataclass
 
 #+BEGIN_SRC python
 class NameInception(Protocol):
@@ -34,7 +64,7 @@ if __name__ == '__main__':
     print(list(map(name_inception_to_str, OSES)))
 #+END_SRC
 
-- Clojure map
+** Clojure map
 
 #+BEGIN_SRC Clojure
 (defn name-inception-to-str [{:keys [name inception]}]
@@ -43,7 +73,7 @@ if __name__ == '__main__':
 (println (map name-inception-to-str oses))
 #+END_SRC
 
-- Logic (Prolog)
+** Logic (Prolog)
 
 #+BEGIN_SRC Prolog
 main :- forall((name(OS, Name), inception(OS, Year)),
