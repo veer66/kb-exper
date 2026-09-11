@@ -102,13 +102,39 @@ less dependent on the dataclass, a protocol can be used, but it
 produces more boilerplate.
 
 ** Clojure map
+Using maps to store data and using keywords as keys is idiomatic in Clojure.
+The code is more concise. However, this approach does not support static type checking.
+A runtime validator can be used instead, but it is not included in this example.
 
+kb part:
+#+BEGIN_SRC Clojure
+(def oses [{:name "CP/M"
+            :inception 1974
+            :platforms #{:I8080 :I8085 :I8086 :M68K :Z80 :Z8K}
+            :proglangs=#{:ASM, :PLM}}
+           {:name "NetBSD"
+            :inception 1993
+            :platforms #{:ALPHA, :ARM, :M68K, :MIPS, :PARISC, :SUPERH, :VAX, :X86, :RISCV}
+            :proglangs #{:ASM, :C}}
+           {:name "PC-DOS"
+            :inception 1981,
+            :platforms #{:X86}
+            :proglangs #{:ASM, :C}}])
+#+END_SRC
+
+main part:
 #+BEGIN_SRC Clojure
 (defn name-inception-to-str [{:keys [name inception]}]
   (str name "@" inception))
 
 (println (map name-inception-to-str oses))
 #+END_SRC
+
+Storing all attributes in a Clojure map results in high cohesion, and with dynamic typing,
+a function does not depend on a type. The code is more concise than the Python dataclass approach.
+However, adding a new attribute still requires editing the existing file,
+and there is no static type checking
+(Typed Clojure can be used instead if static type checking is needed).
 
 ** Logic (Prolog)
 
