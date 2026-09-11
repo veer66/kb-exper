@@ -45,6 +45,13 @@ if __name__ == '__main__':
     print(list(map(os_to_str,OS)))
 #+END_SRC
 
+The main advantage is that the data is decoupled. We can add another key-value map
+without editing existing code (the Open--Closed Principle). ~os_to_str~ depends only
+on the map it needs, not on the rest.
+
+The disadvantage is that the data is scattered (low cohesion). For example,
+adding a new OpenBSD entry requires editing four files.
+
 ** Python dataclass
 
 #+BEGIN_SRC python
