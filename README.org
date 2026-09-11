@@ -138,7 +138,57 @@ and there is no static type checking
 
 ** Logic (Prolog)
 
+We can store our OS information as Prolog facts. In this example, the facts are grouped by OS,
+which leans toward the dataclass approach; however, we can also group facts by their predicates
+(e.g., platform, proglang), which would lean more toward the dispatch table approach.
+
+#+BEGIN_SRC Prolog
+% CP/M
+name(cpm,"CP/M").
+inception(cpm,1974).
+platform(cpm,i8080).
+platform(cpm,i8085).
+platform(cpm,i8086).
+platform(cpm,m68k).
+platform(cpm,z80).
+platform(cpm,z8k).
+proglang(cpm,asm).
+proglang(cpm,plm).
+
+% NetBSD
+name(netbsd,"NetBSD").
+inception(netbsd,1993).
+platform(netbsd,alpha).
+platform(netbsd,arm).
+platform(netbsd,m68k).
+platform(netbsd,mips).
+platform(netbsd,parisc).
+platform(netbsd,superh).
+platform(netbsd,vax).
+platform(netbsd,x86).
+platform(netbsd,riscv).
+
+% PC-DOS
+name(pcdos,"PC-DOS").
+inception(pcdos,1981).
+platform(pcdos,x86).
+proglang(pcdos,asm).
+proglang(pcdos,c).
+#+END_SRC
+
 #+BEGIN_SRC Prolog
 main :- forall((name(OS, Name), inception(OS, Year)),
 	       format("~w@~w~n", [Name, Year])).
 #+END_SRC
+
+In the Prolog example, we use a rule to produce strings of
+name and inception instead of a function.
+The rule is concise and does not depend on unnecessary facts.
+
+The advantage of Prolog is that we can switch between higher cohesion
+and lower coupling just by changing the way we group the facts,
+while every fact stays the same.
+
+Since few people are familiar with Prolog, Datalog adapted to Python
+or Clojure can be used instead, but it would be harder to get
+accepted than a more idiomatic approach.
