@@ -54,6 +54,30 @@ adding a new OpenBSD entry requires editing four files.
 
 ** Python dataclass
 
+We can put all attributes into a dataclass.
+
+kb.py:
+#+BEGIN_SRC python
+OSES = [
+    OS(name="CP/M",
+       inception=1974,
+       platforms=frozenset({Platform.I8080, Platform.I8085, Platform.I8086, Platform.M68K, Platform.Z80, Platform.Z8K}),
+       proglangs=frozenset({ProgLang.ASM, ProgLang.PLM}),
+    ),
+    OS(name="NetBSD",
+       inception=1993,
+       platforms=frozenset({Platform.ALPHA, Platform.ARM, Platform.M68K, Platform.MIPS, Platform.PARISC, Platform.SUPERH, Platform.VAX, Platform.X86, Platform.RISCV}),
+       proglangs=frozenset({ProgLang.ASM, ProgLang.C}),
+    ),
+    OS(name="PC-DOS",
+       inception=1981,
+       platforms=frozenset({Platform.X86}),
+       proglangs=frozenset({ProgLang.ASM, ProgLang.C})
+    ),
+]
+#+END_SRC
+
+__main__.py:
 #+BEGIN_SRC python
 class NameInception(Protocol):
     @property
@@ -70,6 +94,12 @@ def name_inception_to_str(name_inception: NameInception) -> str:
 if __name__ == '__main__':
     print(list(map(name_inception_to_str, OSES)))
 #+END_SRC
+
+This approach has high coherence; for example, adding OpenBSD could
+be done by editing only one block in one file. However, adding a new
+attribute requires editing an existing dataclass. To make a function
+less dependent on the dataclass, a protocol can be used, but it
+produces more boilerplate.
 
 ** Clojure map
 
